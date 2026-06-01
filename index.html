@@ -101,7 +101,7 @@
             <input type="text" id="loginUsername" placeholder="Username" class="login-input" autocomplete="off" autocorrect="off" autocapitalize="none">
             <div style="position: relative; width: 100%; margin-bottom: 1rem;">
                 <input type="password" id="loginPassword" placeholder="Password" class="login-input" style="margin-bottom: 0; padding-right: 40px;" autocorrect="off" autocapitalize="none">
-                <span id="togglePassword" style="position: absolute; right: 15px; top: 15px; cursor: pointer; font-size: 1.2rem; user-select: none; opacity: 0.8;" title="Toggle Password Visibility">👁️</span>
+                <span id="togglePassword" style="position: absolute; right: 15px; top: 15px; cursor: pointer; font-size: 1.2rem; user-select: none; opacity: 0.8;" title="Toggle Password Visibility">📕</span>
             </div>
             <button id="loginBtn" class="login-btn">Login</button>
             <div id="loginError" class="login-error"></div>
@@ -841,8 +841,8 @@
         togglePassword.addEventListener('click', function() {
             const type = loginPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             loginPasswordInput.setAttribute('type', type);
-            // Change the emoji based on state if desired, or keep as eye
-            this.textContent = type === 'password' ? '👁️' : '🙈';
+            // Change the emoji based on state
+            this.textContent = type === 'password' ? '📕' : '📖';
         });
 
         loginPasswordInput.addEventListener('keypress', function(e) {
