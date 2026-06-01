@@ -84,6 +84,12 @@
             font-size: 0.9rem;
             min-height: 20px;
         }
+
+        .notice-card:hover {
+            transform: translateX(5px) !important;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5) !important;
+            border-left-width: 6px !important;
+        }
         
         /* Hide everything else initially if not authenticated to prevent FOUC */
         body.locked > *:not(.login-overlay) {
@@ -115,6 +121,7 @@
         </div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
+            <li><a href="#notices">Notices</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#catalog">Catalog</a></li>
             <li><a href="#gallery">Gallery</a></li>
@@ -140,6 +147,48 @@
                 <button id="searchBtn" class="search-btn">Search</button>
                 <div id="autocomplete-results" class="autocomplete-dropdown"></div>
             </div>
+        </div>
+    </section>
+
+    <!-- Notice Board Section -->
+    <section id="notices" class="section" style="background: rgba(13, 17, 23, 0.4); border-bottom: 1px solid var(--border);">
+        <div class="section-header" data-aos="fade-up">
+            <h2 style="color: #ff9800;">📌 Library Notice Board</h2>
+            <p>Important updates, announcements, and upcoming events</p>
+        </div>
+        
+        <div class="notice-container" style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem;">
+            
+            <!-- Sample Notice 1 -->
+            <div class="notice-card" data-aos="fade-up" data-aos-delay="100" style="background: linear-gradient(145deg, rgba(22, 27, 34, 0.9), rgba(13, 17, 23, 0.9)); border-left: 4px solid #ff9800; border-radius: 8px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.2s ease;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+                    <h3 style="color: white; font-size: 1.2rem; margin: 0;">New Arrivals for June!</h3>
+                    <span style="background: rgba(255, 152, 0, 0.2); color: #ff9800; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.8rem; font-weight: bold;">New Books</span>
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 0.5rem;">We have just added over 50 new fiction and non-fiction books to our collection. Visit the library to check them out. Don't forget to use the catalog to search!</p>
+                <div style="font-size: 0.8rem; color: #58a6ff;">Posted on: June 1, 2026</div>
+            </div>
+
+            <!-- Sample Notice 2 -->
+            <div class="notice-card" data-aos="fade-up" data-aos-delay="200" style="background: linear-gradient(145deg, rgba(22, 27, 34, 0.9), rgba(13, 17, 23, 0.9)); border-left: 4px solid var(--accent); border-radius: 8px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.2s ease;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+                    <h3 style="color: white; font-size: 1.2rem; margin: 0;">Upcoming Author Talk</h3>
+                    <span style="background: rgba(189, 86, 235, 0.2); color: var(--accent); padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.8rem; font-weight: bold;">Event</span>
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 0.5rem;">Join us next Friday for an exciting session with our guest author. Remember to bring your questions and your favorite books for signing!</p>
+                <div style="font-size: 0.8rem; color: #58a6ff;">Posted on: May 28, 2026</div>
+            </div>
+
+            <!-- Sample Notice 3 -->
+            <div class="notice-card" data-aos="fade-up" data-aos-delay="300" style="background: linear-gradient(145deg, rgba(22, 27, 34, 0.9), rgba(13, 17, 23, 0.9)); border-left: 4px solid #4caf50; border-radius: 8px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.2s ease;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+                    <h3 style="color: white; font-size: 1.2rem; margin: 0;">Holiday Notice</h3>
+                    <span style="background: rgba(76, 175, 80, 0.2); color: #4caf50; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.8rem; font-weight: bold;">Announcement</span>
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 0.5rem;">The library will remain closed on Monday due to a public holiday. Please ensure any due books are returned by Friday.</p>
+                <div style="font-size: 0.8rem; color: #58a6ff;">Posted on: May 25, 2026</div>
+            </div>
+
         </div>
     </section>
 
