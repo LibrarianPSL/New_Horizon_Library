@@ -10,16 +10,99 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- PapaParse for CSV parsing -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <style>
+        /* Login Overlay Styles - Inline to bypass cache */
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0d1117;
+            z-index: 999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-card {
+            background: rgba(22, 27, 34, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            max-width: 90%;
+            width: 400px;
+            z-index: 1000000;
+        }
+
+        .login-card h2 {
+            color: #58a6ff;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .login-card p {
+            color: #8b949e;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #c9d1d9;
+            font-size: 16px; /* Prevents iOS zoom */
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .login-input:focus {
+            border-color: #58a6ff;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #58a6ff, #bd56eb);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login-error {
+            color: #ff4b4b;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            min-height: 20px;
+        }
+        
+        /* Hide everything else initially if not authenticated to prevent FOUC */
+        body.locked > *:not(.login-overlay) {
+            display: none !important;
+        }
+    </style>
 </head>
-<body>
+<body class="locked">
 
     <!-- Login Overlay -->
     <div id="loginOverlay" class="login-overlay">
         <div class="login-card">
             <h2>NHIS Library Access</h2>
             <p>Please enter your credentials to access the library.</p>
-            <input type="text" id="loginUsername" placeholder="Username" class="login-input" autocomplete="off">
-            <input type="password" id="loginPassword" placeholder="Password" class="login-input">
+            <input type="text" id="loginUsername" placeholder="Username" class="login-input" autocomplete="off" autocorrect="off" autocapitalize="none">
+            <div style="position: relative; width: 100%; margin-bottom: 1rem;">
+                <input type="password" id="loginPassword" placeholder="Password" class="login-input" style="margin-bottom: 0; padding-right: 40px;" autocorrect="off" autocapitalize="none">
+                <span id="togglePassword" style="position: absolute; right: 15px; top: 15px; cursor: pointer; font-size: 1.2rem; user-select: none; opacity: 0.8;" title="Toggle Password Visibility">👁️</span>
+            </div>
             <button id="loginBtn" class="login-btn">Login</button>
             <div id="loginError" class="login-error"></div>
         </div>
@@ -739,22 +822,33 @@
         // Check if already authenticated
         if (sessionStorage.getItem('nhis_authenticated') === 'true') {
             loginOverlay.style.display = 'none';
+            document.body.classList.remove('locked');
         } else {
             document.body.style.overflow = 'hidden';
             loginUsernameInput.focus();
         }
 
         loginBtn.addEventListener('click', function() {
-            const username = loginUsernameInput.value.trim();
-            const password = loginPasswordInput.value.trim();
+            const username = loginUsernameInput.value.trim().toLowerCase();
+            const password = loginPasswordInput.value.trim().toLowerCase();
 
             if (username === 'nhisparent' && password === 'parent123') {
                 sessionStorage.setItem('nhis_authenticated', 'true');
                 loginOverlay.style.display = 'none';
                 document.body.style.overflow = 'auto';
+                document.body.classList.remove('locked');
             } else {
                 loginError.textContent = 'Invalid username or password.';
             }
+        });
+
+        // Toggle password visibility
+        const togglePassword = document.getElementById('togglePassword');
+        togglePassword.addEventListener('click', function() {
+            const type = loginPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            loginPasswordInput.setAttribute('type', type);
+            // Change the emoji based on state if desired, or keep as eye
+            this.textContent = type === 'password' ? '👁️' : '🙈';
         });
 
         loginPasswordInput.addEventListener('keypress', function(e) {
