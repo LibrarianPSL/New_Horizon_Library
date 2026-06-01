@@ -88,401 +88,95 @@
             border-left-width: 6px !important;
         }
         
-        /* --- Pure CSS Chibi Characters --- */
-        .css-character {
+        /* Epic Constant Wizard Duel */
+        .epic-duel-container {
             position: absolute;
-            width: 45px;
-            height: 55px;
+            top: -95px;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            pointer-events: none;
             z-index: 10;
-            pointer-events: none;
-            transition: all 0.1s ease;
-            top: -45px; /* Stand right on top of the card header as a road */
         }
 
-        /* Heads & Facial Features */
-        .css-character .head {
+        .duel-character {
             position: absolute;
-            top: 4px;
-            left: 11px;
-            width: 23px;
-            height: 23px;
-            border-radius: 50%;
-            z-index: 5;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.4));
         }
 
-        .css-harry .head {
-            background: #ffd1a9; /* Skin tone */
+        .harry-funny {
+            left: 1%;
+            bottom: 5px;
         }
 
-        .css-harry .hair {
+        .voldy-funny {
+            right: 1%;
+            bottom: 5px;
+            transform: scaleX(-1); /* Face Harry */
+        }
+
+        /* Massive Energy Beams (Bigger than them!) */
+        .epic-beam {
             position: absolute;
-            top: -2px;
-            left: 9px;
-            width: 27px;
-            height: 12px;
-            background: #222;
-            border-radius: 10px 10px 0 0;
-            z-index: 6;
-        }
-
-        .css-harry .glasses {
-            position: absolute;
-            top: 7px;
-            left: 2px;
-            width: 19px;
-            height: 8px;
-            border: 1.5px solid #000;
-            border-radius: 4px;
-            z-index: 7;
-        }
-
-        .css-harry .glasses::after {
-            content: '';
-            position: absolute;
-            left: 7px;
-            top: 2px;
-            width: 4px;
-            height: 1px;
-            background: #000;
-        }
-
-        .css-harry .scar {
-            position: absolute;
-            top: -1px;
-            left: 9px;
-            color: #ff3333;
-            font-size: 8px;
-            font-weight: bold;
-            z-index: 8;
-            animation: scarFlash 0.5s ease-in-out infinite alternate;
-        }
-
-        /* Voldy Head & Features */
-        .css-voldy .head {
-            background: #e0e8e0; /* Pale snake-like skin */
-        }
-
-        .css-voldy .voldy-eyes {
-            position: absolute;
-            top: 7px;
-            left: 4px;
-            width: 15px;
-            height: 4px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .css-voldy .voldy-eyes::before, 
-        .css-voldy .voldy-eyes::after {
-            content: '';
-            width: 3.5px;
-            height: 3.5px;
-            background: #ff3333;
-            border-radius: 50%;
-            box-shadow: 0 0 4px red;
-        }
-
-        .css-voldy .voldy-nose {
-            position: absolute;
-            top: 11px;
-            left: 10px;
-            width: 2px;
-            height: 3px;
-            border-left: 1px solid #999;
-            border-right: 1px solid #999;
-        }
-
-        /* Robes / Bodies */
-        .css-character .body-robe {
-            position: absolute;
-            top: 23px;
-            left: 9px;
-            width: 27px;
-            height: 20px;
-            border-radius: 6px 6px 0 0;
-            z-index: 4;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .css-harry .body-robe {
-            background: #1a1a2e; /* Dark wizard robe */
-            border-bottom: 2px solid #58a6ff;
-        }
-
-        .css-voldy .body-robe {
-            background: #1b2e1e; /* Dark green robe */
-            border-bottom: 2px solid #33ff33;
-        }
-
-        /* Arms & Wands */
-        .css-character .arm-left {
-            position: absolute;
-            top: 25px;
-            left: 3px;
-            width: 7px;
-            height: 13px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 4px;
-            transform-origin: top center;
-            animation: armWave 0.8s ease-in-out infinite alternate;
-        }
-
-        .css-harry .arm-left { background: #1a1a2e; }
-        .css-voldy .arm-left { background: #1b2e1e; }
-
-        .css-character .arm-right-wand {
-            position: absolute;
-            top: 25px;
-            right: 3px;
-            width: 7px;
-            height: 13px;
-            border-radius: 4px;
-            transform-origin: top center;
-            z-index: 6;
-        }
-
-        .css-harry .arm-right-wand {
-            background: #1a1a2e;
-            animation: armSwing 0.2s ease-in-out infinite alternate;
-        }
-
-        .css-voldy .arm-right-wand {
-            background: #1b2e1e;
-            left: 3px;
-            right: auto;
-            animation: armSwingVoldy 0.2s ease-in-out infinite alternate;
-        }
-
-        .css-character .wand {
-            position: absolute;
-            bottom: -7px;
-            width: 3px;
-            height: 11px;
-            border-radius: 1px;
-        }
-
-        .css-harry .wand {
-            right: -2px;
-            background: #8b5a2b; /* Wooden wand */
-            transform: rotate(45deg);
-        }
-
-        .css-voldy .wand {
-            left: -2px;
-            background: #e5e5e5; /* Bone wand */
-            transform: rotate(-45deg);
-        }
-
-        /* Legs (Running Animation) */
-        .css-character .leg-left {
-            position: absolute;
-            bottom: 2px;
-            left: 12px;
-            width: 6px;
-            height: 11px;
-            background: #111;
-            border-radius: 3px;
-            transform-origin: top center;
-            animation: legRun 0.15s linear infinite alternate;
-        }
-
-        .css-character .leg-right {
-            position: absolute;
-            bottom: 2px;
-            right: 12px;
-            width: 6px;
-            height: 11px;
-            background: #111;
-            border-radius: 3px;
-            transform-origin: top center;
-            animation: legRun 0.15s linear infinite alternate-reverse;
-        }
-
-        /* --- Spell Beams & Combat VFX --- */
-        .tj-spell {
-            position: absolute;
-            height: 5px;
-            border-radius: 2.5px;
-            z-index: 9;
-            opacity: 0;
-            pointer-events: none;
+            height: 16px;
+            border-radius: 8px;
+            bottom: 45px;
             filter: blur(0.5px);
+            animation: beamVibrate 0.05s linear infinite alternate;
         }
 
-        .tj-red {
-            background: linear-gradient(90deg, transparent, #ff3333, #ffffff);
-            box-shadow: 0 0 10px #ff3333, 0 0 20px #ff3333;
-            animation: tjRedAnim 16s linear infinite;
+        .beam-red {
+            left: 80px;
+            width: calc(50% - 95px);
+            background: linear-gradient(90deg, #ff9999, #ff0000, #ffffff);
+            box-shadow: 0 0 25px #ff0000, 0 0 50px #ff0000, inset 0 0 6px #ffffff;
         }
 
-        .tj-green {
-            background: linear-gradient(-90deg, transparent, #33ff33, #ffffff);
-            box-shadow: 0 0 10px #33ff33, 0 0 20px #33ff33;
-            animation: tjGreenAnim 16s linear infinite;
+        .beam-green {
+            right: 80px;
+            width: calc(50% - 95px);
+            background: linear-gradient(-90deg, #99ff99, #00ff00, #ffffff);
+            box-shadow: 0 0 25px #00ff00, 0 0 50px #00ff00, inset 0 0 6px #ffffff;
         }
 
-        .tj-spark {
+        /* Huge Clashing Energy Orb */
+        .clash-orb {
             position: absolute;
-            font-size: 1.5rem;
-            z-index: 11;
-            opacity: 0;
-            pointer-events: none;
-            animation: tjSparkAnim 16s linear infinite;
-        }
-
-        .tj-shield {
-            position: absolute;
-            width: 55px;
-            height: 55px;
-            border: 3px solid rgba(255, 50, 50, 0.8);
-            background: radial-gradient(circle, rgba(255, 50, 50, 0.4) 0%, transparent 70%);
+            left: 50%;
+            bottom: 35px;
+            transform: translateX(-50%);
+            width: 36px;
+            height: 36px;
+            background: radial-gradient(circle, #ffffff 30%, #ffffcc 60%, transparent 100%);
             border-radius: 50%;
-            z-index: 8;
-            opacity: 0;
-            pointer-events: none;
-            animation: tjShieldAnim 16s linear infinite;
-            box-shadow: 0 0 15px rgba(255,50,50,0.8);
+            box-shadow: 0 0 35px #ffffff, 0 0 70px #ffcc00, 0 0 120px #ff3300;
+            animation: orbPulse 0.25s ease-in-out infinite alternate;
         }
 
-        /* --- Timings and Keyframes --- */
-        .css-harry {
-            animation: harryTomJerry 16s linear infinite;
+        /* Floating Sparks keyframes and style */
+        .sparkle {
+            position: absolute;
+            font-size: 1.2rem;
+            z-index: 12;
+            animation: sparkFly 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
         }
 
-        .css-voldy {
-            animation: voldyTomJerry 16s linear infinite;
+        @keyframes beamVibrate {
+            0% { transform: translateY(-2px) scaleY(0.9); }
+            100% { transform: translateY(2px) scaleY(1.1); }
         }
 
-        @keyframes legRun {
-            0% { transform: rotate(-40deg); }
-            100% { transform: rotate(40deg); }
+        @keyframes orbPulse {
+            0% { transform: translateX(-50%) scale(0.8); }
+            100% { transform: translateX(-50%) scale(1.3); }
         }
 
-        @keyframes armWave {
-            0% { transform: rotate(-15deg); }
-            100% { transform: rotate(50deg); }
-        }
-
-        @keyframes armSwing {
-            0% { transform: rotate(-30deg); }
-            100% { transform: rotate(60deg); }
-        }
-
-        @keyframes armSwingVoldy {
-            0% { transform: rotate(30deg); }
-            100% { transform: rotate(-60deg); }
-        }
-
-        @keyframes scarFlash {
-            0% { opacity: 0.5; text-shadow: none; }
-            100% { opacity: 1; text-shadow: 0 0 5px red; }
-        }
-
-        @keyframes harryTomJerry {
-            /* 0s - 3s: Run to middle */
-            0% { left: 5%; transform: scaleX(1); }
-            18% { left: 35%; transform: scaleX(1); }
-            
-            /* 3s - 7s: Stand and fight (legs running, arms swing) */
-            43% { left: 35%; transform: scaleX(1); }
-            
-            /* 7s - 9s: Run away from Voldy (chase 1) */
-            44% { transform: scaleX(-1); }
-            56% { left: 8%; transform: scaleX(-1); }
-            
-            /* 9s - 11s: Turn around and counter-attack */
-            57% { transform: scaleX(1); }
-            68% { left: 25%; transform: scaleX(1); }
-            
-            /* 11s - 14s: Shielding */
-            87% { left: 25%; transform: scaleX(1); }
-            
-            /* 14s - 16s: Walk back to start */
-            88% { transform: scaleX(-1); }
-            99% { left: 5%; transform: scaleX(-1); }
-            100% { left: 5%; transform: scaleX(1); }
-        }
-
-        @keyframes voldyTomJerry {
-            /* 0s - 3s: Run to middle */
-            0% { left: 85%; transform: scaleX(1); }
-            18% { left: 50%; transform: scaleX(1); }
-            
-            /* 3s - 7s: Stand and fight */
-            43% { left: 50%; transform: scaleX(1); }
-            
-            /* 7s - 9s: Chase Harry */
-            56% { left: 22%; transform: scaleX(1); }
-            
-            /* 9s - 11s: Pushed back by Harry */
-            57% { transform: scaleX(-1); }
-            68% { left: 65%; transform: scaleX(-1); }
-            
-            /* 11s - 14s: Voldy casting dark spell */
-            87% { left: 65%; transform: scaleX(-1); }
-            
-            /* 14s - 16s: Walk back to start */
-            88% { transform: scaleX(1); }
-            99% { left: 85%; transform: scaleX(1); }
-            100% { left: 85%; transform: scaleX(1); }
-        }
-
-        @keyframes tjRedAnim {
-            /* Duel 1 (3s - 7s) */
-            0%, 18% { opacity: 0; top: -20px; left: 38%; width: 0; }
-            19% { opacity: 1; }
-            43% { opacity: 1; top: -20px; left: 38%; width: 6%; }
-            44% { opacity: 0; }
-            
-            /* Duel 2 (9s - 11s) - Harry pushes Voldy */
-            56% { opacity: 0; top: -20px; left: 28%; width: 0; }
-            57% { opacity: 1; }
-            68% { opacity: 1; top: -20px; left: 28%; width: 35%; }
-            69% { opacity: 0; }
-            
-            100% { opacity: 0; }
-        }
-
-        @keyframes tjGreenAnim {
-            /* Duel 1 (3s - 7s) */
-            0%, 18% { opacity: 0; top: -20px; left: 49%; width: 0; }
-            19% { opacity: 1; }
-            43% { opacity: 1; top: -20px; left: 44%; width: 6%; }
-            44% { opacity: 0; }
-            
-            /* Duel 3 (11s - 14s) - Voldy attacks shield */
-            68% { opacity: 0; top: -20px; left: 63%; width: 0; }
-            69% { opacity: 1; }
-            87% { opacity: 1; top: -20px; left: 31%; width: 32%; }
-            88% { opacity: 0; }
-            
-            100% { opacity: 0; }
-        }
-
-        @keyframes tjSparkAnim {
-            /* Duel 1 (3s - 7s) */
-            0%, 18% { opacity: 0; top: -30px; left: 43%; transform: scale(0.5); }
-            19% { opacity: 1; }
-            43% { opacity: 1; transform: scale(1.2) rotate(180deg); }
-            44% { opacity: 0; }
-            
-            /* Duel 3 (11s - 14s) - Collision with Shield */
-            68% { opacity: 0; top: -30px; left: 30%; transform: scale(0.5); }
-            69% { opacity: 1; }
-            87% { opacity: 1; transform: scale(1) rotate(90deg); }
-            88% { opacity: 0; }
-            
-            100% { opacity: 0; }
-        }
-
-        @keyframes tjShieldAnim {
-            /* Duel 3 (11s - 14s) */
-            0%, 68% { opacity: 0; top: -45px; left: 18%; transform: scale(0.5); }
-            69% { opacity: 1; transform: scale(1); }
-            87% { opacity: 1; transform: scale(1); }
-            88% { opacity: 0; }
-            100% { opacity: 0; }
+        @keyframes sparkFly {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+            100% { transform: translate(var(--dx), var(--dy)) scale(0) rotate(360deg); opacity: 0; }
         }
         
         body.locked > *:not(.login-overlay) {
@@ -530,42 +224,25 @@
             <!-- June Literary Game -->
             <div class="notice-card" data-aos="fade-up" data-aos-delay="100" style="background: linear-gradient(145deg, rgba(22, 27, 34, 0.9), rgba(13, 17, 23, 0.9)); border-left: 4px solid #bd56eb; border-radius: 8px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.2s ease; position: relative; overflow: visible;">
                 
-                <!-- Pure CSS Chibi Harry -->
-                <div class="css-character css-harry">
-                    <div class="hair"></div>
-                    <div class="head">
-                        <div class="glasses"></div>
-                        <div class="scar">⚡</div>
-                    </div>
-                    <div class="body-robe"></div>
-                    <div class="arm-left"></div>
-                    <div class="arm-right-wand">
-                        <div class="wand"></div>
-                    </div>
-                    <div class="leg-left"></div>
-                    <div class="leg-right"></div>
+                <!-- Constant Epic Wizard Duel Container -->
+                <div class="epic-duel-container">
+                    <!-- Characters -->
+                    <img src="harry_funny.webp" class="duel-character harry-funny" alt="Harry Potter">
+                    <img src="voldy_funny.webp" class="duel-character voldy-funny" alt="Voldemort">
+                    
+                    <!-- Dueling Energy Beams -->
+                    <div class="epic-beam beam-red"></div>
+                    <div class="epic-beam beam-green"></div>
+                    
+                    <!-- Huge Clash Orb -->
+                    <div class="clash-orb"></div>
+                    
+                    <!-- Exploding sparks -->
+                    <div class="sparkle" style="--dx: -60px; --dy: -40px; left: 49%; bottom: 45px; color: #ff3333;">🔴</div>
+                    <div class="sparkle" style="--dx: 60px; --dy: -50px; left: 51%; bottom: 45px; color: #33ff33; animation-delay: 0.3s;">🟢</div>
+                    <div class="sparkle" style="--dx: -40px; --dy: 30px; left: 50%; bottom: 45px; color: #ffcc00; animation-delay: 0.6s;">⚡</div>
+                    <div class="sparkle" style="--dx: 40px; --dy: 40px; left: 52%; bottom: 45px; color: #ffffff; animation-delay: 0.9s;">✨</div>
                 </div>
-
-                <!-- Pure CSS Chibi Voldemort -->
-                <div class="css-character css-voldy">
-                    <div class="head">
-                        <div class="voldy-eyes"></div>
-                        <div class="voldy-nose"></div>
-                    </div>
-                    <div class="body-robe"></div>
-                    <div class="arm-left"></div>
-                    <div class="arm-right-wand">
-                        <div class="wand"></div>
-                    </div>
-                    <div class="leg-left"></div>
-                    <div class="leg-right"></div>
-                </div>
-
-                <!-- Spell Beams & VFX -->
-                <div class="tj-spell tj-red"></div>
-                <div class="tj-spell tj-green"></div>
-                <div class="tj-spark">💥</div>
-                <div class="tj-shield"></div>
 
                 <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.5rem; position: relative; z-index: 2;">
                     <h3 style="color: white; font-size: 1.4rem; margin: 0;">June Literary Game: Hogwarts Spell Hunt 🪄</h3>
@@ -573,7 +250,15 @@
                 </div>
                 
                 <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-                    <img src="June_Notice_Board.jpeg" alt="June Literary Game - Hogwarts Spell Hunt" style="width: 100%; border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 5px 15px rgba(0,0,0,0.5);">
+                    <!-- Dual Side-By-Side Images for High Quality Layout -->
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; width: 100%;">
+                        <div style="flex: 1; min-width: 280px;">
+                            <img src="harry_voldemort_duel.jpg" alt="Harry Potter and Voldemort Duel" style="width: 100%; border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 5px 15px rgba(0,0,0,0.5);">
+                        </div>
+                        <div style="flex: 1; min-width: 280px;">
+                            <img src="June_Notice_Board.jpeg" alt="June Literary Game - Hogwarts Spell Hunt" style="width: 100%; border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 5px 15px rgba(0,0,0,0.5);">
+                        </div>
+                    </div>
                     
                     <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6; margin-bottom: 0;">
                         <strong style="color: var(--text-main); font-size: 1.1rem;">This Month in the Library:</strong><br>
