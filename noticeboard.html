@@ -119,28 +119,46 @@
             bottom: 5px;
         }
 
-        /* Massive Energy Beams (Bigger than them!) */
+        /* Tapered, rolling cloud-like energy beams */
         .epic-beam {
             position: absolute;
-            height: 18px; /* Even bigger and more realistic */
-            border-radius: 9px;
-            bottom: 45px;
-            filter: blur(0.3px);
+            height: 48px; /* Taller for a dramatic expanding cloud effect */
+            bottom: 30px; /* Aligns thin tip with the wands */
+            pointer-events: none;
+            filter: blur(1.2px); /* Soft smoky cloud edges */
             animation: beamVibrate 0.04s linear infinite alternate;
         }
 
         .beam-red {
-            left: 80px;
-            width: calc(50% - 95px);
-            background: linear-gradient(90deg, #ffa6a6, #ff0000, #ffffff);
-            box-shadow: 0 0 30px #ff0000, 0 0 60px #ff0000, inset 0 0 8px #ffffff;
+            left: 75px;
+            width: calc(50% - 92px);
+            background: linear-gradient(90deg, #ffa6a6 10%, #ff0000 50%, #880000 100%);
+            background-size: 200% 100%;
+            clip-path: polygon(0% 48%, 100% 0%, 100% 100%, 0% 52%);
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.8), 0 0 50px rgba(255, 0, 0, 0.4);
+            animation: beamVibrate 0.04s linear infinite alternate, smokeFlowRed 1.2s linear infinite;
         }
 
         .beam-green {
-            right: 80px;
-            width: calc(50% - 95px);
-            background: linear-gradient(-90deg, #a6ffa6, #00ff00, #ffffff);
-            box-shadow: 0 0 30px #00ff00, 0 0 60px #00ff00, inset 0 0 8px #ffffff;
+            right: 75px;
+            width: calc(50% - 92px);
+            background: linear-gradient(-90deg, #a6ffa6 10%, #00ff00 50%, #006600 100%);
+            background-size: 200% 100%;
+            clip-path: polygon(100% 48%, 0% 0%, 0% 100%, 100% 52%);
+            box-shadow: 0 0 25px rgba(0, 255, 0, 0.8), 0 0 50px rgba(0, 255, 0, 0.4);
+            animation: beamVibrate 0.04s linear infinite alternate, smokeFlowGreen 1.2s linear infinite;
+        }
+
+        @keyframes smokeFlowRed {
+            0% { background-position: 0% 50%; opacity: 0.85; filter: blur(1px) brightness(1); }
+            50% { opacity: 1; filter: blur(1.5px) brightness(1.25); }
+            100% { background-position: 200% 50%; opacity: 0.85; filter: blur(1px) brightness(1); }
+        }
+
+        @keyframes smokeFlowGreen {
+            0% { background-position: 200% 50%; opacity: 0.85; filter: blur(1px) brightness(1); }
+            50% { opacity: 1; filter: blur(1.5px) brightness(1.25); }
+            100% { background-position: 0% 50%; opacity: 0.85; filter: blur(1px) brightness(1); }
         }
 
         /* Huge Clashing Energy Orb */
@@ -149,11 +167,11 @@
             left: 50%;
             bottom: 35px;
             transform: translateX(-50%);
-            width: 38px;
-            height: 38px;
+            width: 44px; /* Increased size to match the bigger clouds */
+            height: 44px;
             background: radial-gradient(circle, #ffffff 40%, #ffffdd 70%, transparent 100%);
             border-radius: 50%;
-            box-shadow: 0 0 40px #ffffff, 0 0 80px #ffcc00, 0 0 140px #ff3300;
+            box-shadow: 0 0 45px #ffffff, 0 0 90px #ffcc00, 0 0 150px #ff3300;
             animation: orbPulse 0.2s ease-in-out infinite alternate;
         }
 
