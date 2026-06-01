@@ -117,7 +117,6 @@
         .voldy-funny {
             right: 1%;
             bottom: 5px;
-            transform: scaleX(-1); /* Face Harry */
         }
 
         /* Massive Energy Beams (Bigger than them!) */
@@ -358,13 +357,13 @@
                     const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
                     const data = imgData.data;
                     
-                    // Remove bright background pixels (white, very light grey, very light yellow)
+                    // Crop out pure white and very bright light-grey pixels aggressively
                     for (let i = 0; i < data.length; i += 4) {
                         const r = data[i];
                         const g = data[i+1];
                         const b = data[i+2];
                         
-                        if (r > 215 && g > 215 && b > 215) {
+                        if (r > 195 && g > 195 && b > 195) {
                             data[i+3] = 0; // Make pixel fully transparent
                         }
                     }
