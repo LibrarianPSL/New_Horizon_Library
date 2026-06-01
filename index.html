@@ -13,6 +13,18 @@
 </head>
 <body>
 
+    <!-- Login Overlay -->
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-card">
+            <h2>NHIS Library Access</h2>
+            <p>Please enter your credentials to access the library.</p>
+            <input type="text" id="loginUsername" placeholder="Username" class="login-input" autocomplete="off">
+            <input type="password" id="loginPassword" placeholder="Password" class="login-input">
+            <button id="loginBtn" class="login-btn">Login</button>
+            <div id="loginError" class="login-error"></div>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar" data-aos="fade-down" data-aos-duration="1000">
         <div class="logo-container">
@@ -715,6 +727,45 @@
         });
         document.addEventListener('keydown', (e) => {
             if(e.key === 'Escape' && lightbox.style.display === 'flex') closeLightbox();
+        });
+
+        // --- Login Logic ---
+        const loginOverlay = document.getElementById('loginOverlay');
+        const loginBtn = document.getElementById('loginBtn');
+        const loginUsernameInput = document.getElementById('loginUsername');
+        const loginPasswordInput = document.getElementById('loginPassword');
+        const loginError = document.getElementById('loginError');
+
+        // Check if already authenticated
+        if (sessionStorage.getItem('nhis_authenticated') === 'true') {
+            loginOverlay.style.display = 'none';
+        } else {
+            document.body.style.overflow = 'hidden';
+            loginUsernameInput.focus();
+        }
+
+        loginBtn.addEventListener('click', function() {
+            const username = loginUsernameInput.value.trim();
+            const password = loginPasswordInput.value.trim();
+
+            if (username === 'nhisparent' && password === 'parent123') {
+                sessionStorage.setItem('nhis_authenticated', 'true');
+                loginOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            } else {
+                loginError.textContent = 'Invalid username or password.';
+            }
+        });
+
+        loginPasswordInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                loginBtn.click();
+            }
+        });
+        loginUsernameInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                loginPasswordInput.focus();
+            }
         });
     </script>
     
