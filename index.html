@@ -819,21 +819,15 @@
         const loginPasswordInput = document.getElementById('loginPassword');
         const loginError = document.getElementById('loginError');
 
-        // Check if already authenticated
-        if (sessionStorage.getItem('nhis_authenticated') === 'true') {
-            loginOverlay.style.display = 'none';
-            document.body.classList.remove('locked');
-        } else {
-            document.body.style.overflow = 'hidden';
-            loginUsernameInput.focus();
-        }
+        // Show overlay by default
+        document.body.style.overflow = 'hidden';
+        loginUsernameInput.focus();
 
         loginBtn.addEventListener('click', function() {
             const username = loginUsernameInput.value.trim().toLowerCase();
             const password = loginPasswordInput.value.trim().toLowerCase();
 
             if (username === 'nhisparent' && password === 'parent123') {
-                sessionStorage.setItem('nhis_authenticated', 'true');
                 loginOverlay.style.display = 'none';
                 document.body.style.overflow = 'auto';
                 document.body.classList.remove('locked');
