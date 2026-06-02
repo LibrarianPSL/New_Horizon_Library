@@ -322,15 +322,15 @@
                         }
                     </style>
 
-                    <div class="swipe-container">
+                    <div class="swipe-container" id="noticeGallery">
                         <img src="June_Notice_Board.jpeg" alt="June Literary Game - Hogwarts Spell Hunt" class="swipe-item">
                         <img src="June_children.jpeg" alt="Children participating in the spell hunt" class="swipe-item">
                     </div>
-                    <div class="swipe-hint">
+                    <div class="swipe-hint" id="swipeHint">
                         <i>Swipe left to see participants 👈</i>
                     </div>
 
-                    <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6; margin-bottom: 0;">
+                    <p id="noticeDescription" style="color: var(--text-muted); font-size: 1rem; line-height: 1.6; margin-bottom: 0;">
                         <strong style="color: var(--text-main); font-size: 1.1rem;">This Month in the
                             Library:</strong><br>
                         We are thrilled to engage our students with the <strong>Hogwarts Spell Hunt</strong>! As shown
@@ -346,6 +346,38 @@
                         of the successful participants will be proudly displayed on the library noticeboard to celebrate
                         their investigative skills! ⚡
                     </p>
+                    
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            const gallery = document.getElementById("noticeGallery");
+                            const desc = document.getElementById("noticeDescription");
+                            const hint = document.getElementById("swipeHint");
+
+                            const originalText = desc.innerHTML;
+                            const secondText = `
+                                <strong style="color: var(--text-main); font-size: 1.1rem;">Our Students in Action:</strong><br>
+                                Here are our enthusiastic students actively participating in the <strong>Hogwarts Spell Hunt</strong>! 
+                                They've been visiting the library during their free time, teaming up, and eagerly hunting down the answers 
+                                to our mysterious spell challenges. 
+                                <br><br>
+                                It's wonderful to see their investigative skills and love for reading come alive! ⚡
+                            `;
+
+                            gallery.addEventListener("scroll", function() {
+                                if (gallery.scrollLeft > (gallery.clientWidth / 2)) {
+                                    if (desc.innerHTML !== secondText) {
+                                        desc.innerHTML = secondText;
+                                        hint.innerHTML = '<i>Swipe right to see the noticeboard 👉</i>';
+                                    }
+                                } else {
+                                    if (desc.innerHTML !== originalText) {
+                                        desc.innerHTML = originalText;
+                                        hint.innerHTML = '<i>Swipe left to see participants 👈</i>';
+                                    }
+                                }
+                            });
+                        });
+                    </script>
                 </div>
                 <div
                     style="font-size: 0.85rem; color: #58a6ff; margin-top: 1.5rem; border-top: 1px solid var(--border); padding-top: 1rem;">
