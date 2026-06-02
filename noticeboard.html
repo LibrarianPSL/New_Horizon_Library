@@ -122,57 +122,45 @@
             bottom: 5px;
         }
 
-        /* Tapered, rolling cloud-like energy beams */
+        /* High-Voltage Crackling Lightning Beams */
         .epic-beam {
             position: absolute;
-            height: 56px; /* Taller for substantial liquid volume */
-            bottom: 26px; /* Aligns thin tip with the wands */
+            height: 16px; /* Perfect thickness for a sharp, high-intensity lightning bolt */
+            bottom: 45px; /* Aligns thin tip perfectly with the wands */
             pointer-events: none;
-            filter: url(#watery-magic) blur(0.8px); /* Intense watery fluid ripples */
+            filter: url(#lightning-magic); /* Hyper-realistic spiky spires and sharp zig-zag arcs! */
             animation: beamVibrate 0.03s linear infinite alternate;
         }
 
         .beam-red {
             left: 75px;
             width: calc(50% - 92px);
-            background: linear-gradient(90deg, rgba(255,255,255,0.9) 0%, #ff5555 25%, #cc0022 65%, #770011 100%);
-            background-size: 200% 100%;
+            background: #ffffff; /* Hot white electric plasma core */
             clip-path: polygon(0% 48%, 100% 0%, 100% 100%, 0% 52%);
-            /* Soft liquid fluid volume styling rather than harsh laser line */
-            box-shadow: 0 8px 25px rgba(255, 0, 0, 0.6), inset 0 4px 15px rgba(255, 200, 200, 0.7);
-            animation: beamVibrate 0.03s linear infinite alternate, smokeFlowRed 1.2s linear infinite;
+            box-shadow: 
+                0 0 10px #ffffff,
+                0 0 25px #ff1a1a, 
+                0 0 50px rgba(255, 26, 26, 0.7);
         }
 
         .beam-green {
             right: 75px;
             width: calc(50% - 92px);
-            background: linear-gradient(-90deg, rgba(255,255,255,0.9) 0%, #44ff44 25%, #00aa00 65%, #005500 100%);
-            background-size: 200% 100%;
+            background: #ffffff; /* Hot white electric plasma core */
             clip-path: polygon(100% 48%, 0% 0%, 0% 100%, 100% 52%);
-            /* Soft liquid fluid volume styling rather than harsh laser line */
-            box-shadow: 0 8px 25px rgba(0, 255, 0, 0.6), inset 0 4px 15px rgba(200, 255, 200, 0.7);
-            animation: beamVibrate 0.03s linear infinite alternate, smokeFlowGreen 1.2s linear infinite;
-        }
-
-        @keyframes smokeFlowRed {
-            0% { background-position: 0% 50%; opacity: 0.9; }
-            50% { opacity: 1; }
-            100% { background-position: 200% 50%; opacity: 0.9; }
-        }
-
-        @keyframes smokeFlowGreen {
-            0% { background-position: 200% 50%; opacity: 0.9; }
-            50% { opacity: 1; }
-            100% { background-position: 0% 50%; opacity: 0.9; }
+            box-shadow: 
+                0 0 10px #ffffff,
+                0 0 25px #1aff1a, 
+                0 0 50px rgba(26, 255, 26, 0.7);
         }
 
         /* Huge Clashing Energy Orb */
         .clash-orb {
             position: absolute;
             left: 50%;
-            bottom: 32px;
+            bottom: 29px; /* Centered with the lightning wands line */
             transform: translateX(-50%);
-            width: 48px; /* Taller and wider for splash impact */
+            width: 48px;
             height: 48px;
             background: radial-gradient(circle, #ffffff 40%, #ffcc00 70%, transparent 100%);
             border-radius: 50%;
@@ -285,14 +273,14 @@
 
                 <!-- Constant Epic Wizard Duel Container -->
                 <div class="epic-duel-container">
-                    <!-- Liquid Watery organic SVG distortion filter -->
+                    <!-- High-Voltage Crackling Lightning SVG distortion filter -->
                     <svg style="position: absolute; width: 0; height: 0;">
                         <defs>
-                            <filter id="watery-magic" x="-30%" y="-30%" width="160%" height="160%">
-                                <feTurbulence type="fractalNoise" baseFrequency="0.01 0.05" numOctaves="4" result="noise">
-                                    <animate attributeName="baseFrequency" values="0.01 0.04; 0.01 0.1; 0.01 0.04" dur="2.5s" repeatCount="indefinite" />
+                            <filter id="lightning-magic" x="-40%" y="-40%" width="180%" height="180%">
+                                <feTurbulence type="fractalNoise" baseFrequency="0.06 0.16" numOctaves="5" result="noise">
+                                    <animate attributeName="seed" values="1;100;1" dur="0.6s" repeatCount="indefinite" />
                                 </feTurbulence>
-                                <feDisplacementMap in="SourceGraphic" in2="noise" scale="36" xChannelSelector="R" yChannelSelector="G" />
+                                <feDisplacementMap in="SourceGraphic" in2="noise" scale="45" xChannelSelector="R" yChannelSelector="G" />
                             </filter>
                         </defs>
                     </svg>
