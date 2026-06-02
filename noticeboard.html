@@ -172,39 +172,22 @@
             left: 50%;
             bottom: 32px;
             transform: translateX(-50%);
-            width: 56px; 
-            height: 56px;
-            background: radial-gradient(circle, #ff2222 10%, #22ff22 50%, #ff2222 90%);
-            background-size: 200% 200%;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(90deg, #ff0000 50%, #00ff00 50%);
             border-radius: 50%;
-            box-shadow: 0 0 30px #ff0000, 0 0 30px #00ff00, inset 0 0 15px #ffffff;
-            animation: orbFluid 3s linear infinite, orbPulse 0.15s ease-in-out infinite alternate;
-            filter: url(#watery-magic);
-        }
-
-        @keyframes orbFluid {
-            0% {
-                background-position: 0% 50%;
-                border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            }
-            100% {
-                background-position: 0% 50%;
-                border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-            }
+            box-shadow: -10px 0 35px #ff0000, 10px 0 35px #00ff00, 0 0 20px #ffffff inset;
+            animation: orbPulse 0.25s ease-in-out infinite alternate;
         }
 
         @keyframes orbPulse {
             0% {
-                transform: translateX(-50%) scale(0.9);
-                filter: url(#watery-magic) brightness(1);
+                transform: translateX(-50%) scale(0.85);
+                filter: brightness(1);
             }
             100% {
                 transform: translateX(-50%) scale(1.3);
-                filter: url(#watery-magic) brightness(1.3);
+                filter: brightness(1.25);
             }
         }
 
