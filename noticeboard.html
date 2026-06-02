@@ -122,81 +122,65 @@
             bottom: 5px;
         }
 
-        /* High-Voltage Crackling Lightning Beams */
+        /* Fluid Ray of Light Beams */
         .epic-beam {
             position: absolute;
             height: 16px; /* Perfect thickness for a sharp, high-intensity lightning bolt */
             bottom: 45px; /* Aligns thin tip perfectly with the wands */
             pointer-events: none;
-            filter: url(#lightning-magic); /* Hyper-realistic spiky spires and sharp zig-zag arcs! */
+            filter: url(#watery-magic); /* Hyper-realistic spiky spires and sharp zig-zag arcs! */
             animation: beamVibrate 0.03s linear infinite alternate;
         }
 
         .beam-red {
             left: 75px;
             width: calc(50% - 92px);
-            background: #ffffff; /* Hot white electric plasma core */
+            background: linear-gradient(90deg, rgba(255,255,255,0.9) 0%, #ff4444 25%, #aa0000 65%, #550000 100%);
+            background-size: 200% 100%;
             clip-path: polygon(0% 48%, 100% 0%, 100% 100%, 0% 52%);
-            box-shadow: 
-                0 0 10px #ffffff,
-                0 0 25px #ff1a1a, 
-                0 0 50px rgba(255, 26, 26, 0.7);
+            /* Soft liquid fluid volume styling rather than harsh laser line */
+            box-shadow: 0 8px 25px rgba(255, 0, 0, 0.6), inset 0 4px 15px rgba(255, 200, 200, 0.7);
+            animation: beamVibrate 0.03s linear infinite alternate, smokeFlowRed 1.2s linear infinite;
         }
 
         .beam-green {
             right: 75px;
             width: calc(50% - 92px);
-            background: #ffffff; /* Hot white electric plasma core */
+            background: linear-gradient(-90deg, rgba(255,255,255,0.9) 0%, #44ff44 25%, #00aa00 65%, #005500 100%);
+            background-size: 200% 100%;
             clip-path: polygon(100% 48%, 0% 0%, 0% 100%, 100% 52%);
-            box-shadow: 
-                0 0 10px #ffffff,
-                0 0 25px #1aff1a, 
-                0 0 50px rgba(26, 255, 26, 0.7);
+            /* Soft liquid fluid volume styling rather than harsh laser line */
+            box-shadow: 0 8px 25px rgba(0, 255, 0, 0.6), inset 0 4px 15px rgba(200, 255, 200, 0.7);
+            animation: beamVibrate 0.03s linear infinite alternate, smokeFlowGreen 1.2s linear infinite;
+        }
+
+        @keyframes smokeFlowRed {
+            0% { background-position: 0% 50%; opacity: 0.9; }
+            50% { opacity: 1; }
+            100% { background-position: 200% 50%; opacity: 0.9; }
+        }
+
+        @keyframes smokeFlowGreen {
+            0% { background-position: 200% 50%; opacity: 0.9; }
+            50% { opacity: 1; }
+            100% { background-position: 0% 50%; opacity: 0.9; }
         }
 
         /* Huge Clashing Energy Orb */
         .clash-orb {
             position: absolute;
             left: 50%;
-            bottom: 29px; /* Centered with the lightning wands line */
+            bottom: 32px;
             transform: translateX(-50%);
-            width: 48px;
+            width: 48px; /* Taller and wider for splash impact */
             height: 48px;
-            background: radial-gradient(circle, #ffffff 40%, #1aff1a 60%, #ff1a1a 80%, transparent 100%);
+            background: radial-gradient(circle, #ffffff 40%, #ffcc00 70%, transparent 100%);
             border-radius: 50%;
-            box-shadow: 0 0 35px #ffffff, 0 10px 50px #1aff1a, 0 20px 100px #ff1a1a;
+            box-shadow: 0 0 35px #ffffff, 0 10px 50px #ffcc00, 0 20px 100px #ff6600;
             animation: orbPulse 0.25s ease-in-out infinite alternate;
         }
 
-        /* Lightning Discharges shooting out from the center clash */
-        .lightning-spark {
-            position: absolute;
-            width: 32px; /* Shortened for subtle elegant crackles */
-            height: 1.5px; /* Extremely thin, high-voltage filament */
-            background: #ffffff;
-            box-shadow: 0 0 5px #1aff1a, 0 0 10px #ff1a1a;
-            left: 50%;
-            bottom: 53px; /* Centers exactly on the wands line */
-            transform-origin: left center;
-            filter: url(#lightning-magic); /* Crackles jaggedly! */
-            opacity: 0.65;
-            animation: lightningDischarge 0.8s ease-out infinite;
-        }
 
-        @keyframes lightningDischarge {
-            0% {
-                transform: rotate(var(--angle)) scaleX(0) scaleY(1);
-                opacity: 0.8;
-            }
-            50% {
-                transform: rotate(var(--angle)) scaleX(1.2) scaleY(1.2);
-                opacity: 0.7;
-            }
-            100% {
-                transform: rotate(var(--angle)) scaleX(1.6) scaleY(0);
-                opacity: 0;
-            }
-        }
 
         @keyframes orbPulse {
             0% {
@@ -273,14 +257,14 @@
 
                 <!-- Constant Epic Wizard Duel Container -->
                 <div class="epic-duel-container">
-                    <!-- High-Voltage Crackling Lightning SVG distortion filter -->
+                    <!-- Liquid Watery organic SVG distortion filter -->
                     <svg style="position: absolute; width: 0; height: 0;">
                         <defs>
-                            <filter id="lightning-magic" x="-40%" y="-40%" width="180%" height="180%">
-                                <feTurbulence type="fractalNoise" baseFrequency="0.02 0.08" numOctaves="2" result="noise">
-                                    <animate attributeName="seed" values="1;100;1" dur="0.6s" repeatCount="indefinite" />
+                            <filter id="watery-magic" x="-30%" y="-30%" width="160%" height="160%">
+                                <feTurbulence type="fractalNoise" baseFrequency="0.01 0.05" numOctaves="4" result="noise">
+                                    <animate attributeName="baseFrequency" values="0.01 0.04; 0.01 0.1; 0.01 0.04" dur="2.5s" repeatCount="indefinite" />
                                 </feTurbulence>
-                                <feDisplacementMap in="SourceGraphic" in2="noise" scale="15" xChannelSelector="R" yChannelSelector="G" />
+                                <feDisplacementMap in="SourceGraphic" in2="noise" scale="36" xChannelSelector="R" yChannelSelector="G" />
                             </filter>
                         </defs>
                     </svg>
@@ -296,10 +280,7 @@
                     <!-- Huge Clash Orb -->
                     <div class="clash-orb"></div>
 
-                    <!-- Crackling lightning discharges shooting out -->
-                    <div class="lightning-spark" style="--angle: 35deg; animation-delay: 0.2s;"></div>
-                    <div class="lightning-spark" style="--angle: -50deg; animation-delay: 0.5s;"></div>
-                    <div class="lightning-spark" style="--angle: 110deg; animation-delay: 0s;"></div>
+
                 </div>
 
                 <div style="display: flex; flex-direction: column; gap: 1.5rem;">
