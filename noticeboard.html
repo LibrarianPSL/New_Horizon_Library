@@ -284,9 +284,51 @@
                 </div>
 
                 <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-                    <!-- Original Single Noticeboard Image -->
-                    <img src="June_Notice_Board.jpeg" alt="June Literary Game - Hogwarts Spell Hunt"
-                        style="width: 100%; border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 5px 15px rgba(0,0,0,0.5);">
+                    <!-- Swipeable Image Gallery -->
+                    <style>
+                        .swipe-container {
+                            display: flex;
+                            overflow-x: auto;
+                            scroll-snap-type: x mandatory;
+                            gap: 1rem;
+                            padding-bottom: 0.5rem;
+                            -webkit-overflow-scrolling: touch;
+                            scrollbar-width: none; /* Firefox */
+                        }
+                        .swipe-container::-webkit-scrollbar {
+                            display: none; /* Safari and Chrome */
+                        }
+                        .swipe-item {
+                            width: 100%;
+                            flex: 0 0 100%;
+                            scroll-snap-align: center;
+                            border-radius: 8px;
+                            border: 1px solid var(--border);
+                            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+                            object-fit: cover;
+                        }
+                        .swipe-hint {
+                            text-align: center;
+                            color: #8b949e;
+                            font-size: 0.85rem;
+                            margin-top: -0.5rem;
+                            margin-bottom: 0.5rem;
+                            animation: swipePulse 2s infinite;
+                        }
+                        @keyframes swipePulse {
+                            0% { opacity: 0.5; transform: translateX(0); }
+                            50% { opacity: 1; transform: translateX(5px); }
+                            100% { opacity: 0.5; transform: translateX(0); }
+                        }
+                    </style>
+
+                    <div class="swipe-container">
+                        <img src="June_Notice_Board.jpeg" alt="June Literary Game - Hogwarts Spell Hunt" class="swipe-item">
+                        <img src="June_children.jpeg" alt="Children participating in the spell hunt" class="swipe-item">
+                    </div>
+                    <div class="swipe-hint">
+                        <i>Swipe left to see participants 👈</i>
+                    </div>
 
                     <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6; margin-bottom: 0;">
                         <strong style="color: var(--text-main); font-size: 1.1rem;">This Month in the
