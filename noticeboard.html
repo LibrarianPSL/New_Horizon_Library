@@ -162,39 +162,38 @@
             transform: translateX(-50%);
             width: 48px;
             height: 48px;
-            background: radial-gradient(circle, #ffffff 40%, #ffcc00 70%, transparent 100%);
+            background: radial-gradient(circle, #ffffff 40%, #1aff1a 60%, #ff1a1a 80%, transparent 100%);
             border-radius: 50%;
-            /* Apply lightning filter to deform the circle into a spiky energy ball! */
-            filter: url(#lightning-magic);
-            box-shadow: 0 0 35px #ffffff, 0 10px 50px #ff9900, 0 20px 100px #ff3300;
-            animation: orbPulse 0.2s ease-in-out infinite alternate;
+            box-shadow: 0 0 35px #ffffff, 0 10px 50px #1aff1a, 0 20px 100px #ff1a1a;
+            animation: orbPulse 0.25s ease-in-out infinite alternate;
         }
 
         /* Lightning Discharges shooting out from the center clash */
         .lightning-spark {
             position: absolute;
-            width: 50px;
-            height: 4px;
+            width: 32px; /* Shortened for subtle elegant crackles */
+            height: 1.5px; /* Extremely thin, high-voltage filament */
             background: #ffffff;
-            box-shadow: 0 0 8px #ffcc00, 0 0 15px #ff3300;
+            box-shadow: 0 0 5px #1aff1a, 0 0 10px #ff1a1a;
             left: 50%;
             bottom: 53px; /* Centers exactly on the wands line */
             transform-origin: left center;
             filter: url(#lightning-magic); /* Crackles jaggedly! */
-            animation: lightningDischarge 0.7s ease-out infinite;
+            opacity: 0.65;
+            animation: lightningDischarge 0.8s ease-out infinite;
         }
 
         @keyframes lightningDischarge {
             0% {
                 transform: rotate(var(--angle)) scaleX(0) scaleY(1);
-                opacity: 1;
+                opacity: 0.8;
             }
             50% {
-                transform: rotate(var(--angle)) scaleX(1.3) scaleY(1.4);
-                opacity: 0.9;
+                transform: rotate(var(--angle)) scaleX(1.2) scaleY(1.2);
+                opacity: 0.7;
             }
             100% {
-                transform: rotate(var(--angle)) scaleX(1.8) scaleY(0);
+                transform: rotate(var(--angle)) scaleX(1.6) scaleY(0);
                 opacity: 0;
             }
         }
@@ -202,24 +201,12 @@
         @keyframes orbPulse {
             0% {
                 transform: translateX(-50%) scale(0.85);
-                filter: url(#lightning-magic) brightness(0.9);
+                filter: brightness(1);
             }
 
             100% {
-                transform: translateX(-50%) scale(1.25);
-                filter: url(#lightning-magic) brightness(1.2);
-            }
-        }
-
-        @keyframes sparkFly {
-            0% {
-                transform: translate(0, 0) scale(1.2) rotate(0deg);
-                opacity: 1;
-            }
-
-            100% {
-                transform: translate(var(--dx), var(--dy)) scale(0) rotate(360deg);
-                opacity: 0;
+                transform: translateX(-50%) scale(1.3);
+                filter: brightness(1.25);
             }
         }
 
@@ -290,10 +277,10 @@
                     <svg style="position: absolute; width: 0; height: 0;">
                         <defs>
                             <filter id="lightning-magic" x="-40%" y="-40%" width="180%" height="180%">
-                                <feTurbulence type="fractalNoise" baseFrequency="0.06 0.16" numOctaves="5" result="noise">
+                                <feTurbulence type="fractalNoise" baseFrequency="0.02 0.08" numOctaves="2" result="noise">
                                     <animate attributeName="seed" values="1;100;1" dur="0.6s" repeatCount="indefinite" />
                                 </feTurbulence>
-                                <feDisplacementMap in="SourceGraphic" in2="noise" scale="45" xChannelSelector="R" yChannelSelector="G" />
+                                <feDisplacementMap in="SourceGraphic" in2="noise" scale="15" xChannelSelector="R" yChannelSelector="G" />
                             </filter>
                         </defs>
                     </svg>
@@ -310,12 +297,9 @@
                     <div class="clash-orb"></div>
 
                     <!-- Crackling lightning discharges shooting out -->
-                    <div class="lightning-spark" style="--angle: 25deg; animation-delay: 0.1s;"></div>
-                    <div class="lightning-spark" style="--angle: 70deg; animation-delay: 0.3s;"></div>
-                    <div class="lightning-spark" style="--angle: 115deg; animation-delay: 0s;"></div>
-                    <div class="lightning-spark" style="--angle: -40deg; animation-delay: 0.4s;"></div>
-                    <div class="lightning-spark" style="--angle: -85deg; animation-delay: 0.2s;"></div>
-                    <div class="lightning-spark" style="--angle: -130deg; animation-delay: 0.5s;"></div>
+                    <div class="lightning-spark" style="--angle: 35deg; animation-delay: 0.2s;"></div>
+                    <div class="lightning-spark" style="--angle: -50deg; animation-delay: 0.5s;"></div>
+                    <div class="lightning-spark" style="--angle: 110deg; animation-delay: 0s;"></div>
                 </div>
 
                 <div style="display: flex; flex-direction: column; gap: 1.5rem;">
