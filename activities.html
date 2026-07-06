@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Monthly Activities - NHIS Library</title>
+    <link rel="stylesheet" href="styles.css?v=1.6">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Login Overlay Styles */
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0d1117;
+            z-index: 999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-card {
+            background: rgba(22, 27, 34, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            max-width: 90%;
+            width: 400px;
+            z-index: 1000000;
+        }
+
+        .login-card h2 { color: #58a6ff; margin-bottom: 1rem; font-size: 1.5rem; }
+        .login-card p { color: #8b949e; margin-bottom: 1.5rem; font-size: 0.9rem; }
+        .login-input {
+            width: 100%; padding: 1rem; margin-bottom: 1rem;
+            background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px; color: #c9d1d9; font-size: 16px;
+            outline: none; box-sizing: border-box;
+        }
+        .login-input:focus { border-color: #58a6ff; }
+        .login-btn {
+            width: 100%; padding: 1rem; background: linear-gradient(135deg, #58a6ff, #bd56eb);
+            color: white; border: none; border-radius: 8px; font-size: 1.1rem;
+            font-weight: bold; cursor: pointer;
+        }
+        .login-error { color: #ff4b4b; margin-top: 1rem; font-size: 0.9rem; min-height: 20px; }
+
+        body.locked>*:not(.login-overlay) { display: none !important; }
+
+        .month-card {
+            background: rgba(22, 27, 34, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            color: white;
+        }
+
+        .month-card:hover {
+            transform: translateY(-5px);
+            border-color: #58a6ff;
+            box-shadow: 0 10px 20px rgba(88, 166, 255, 0.2);
+        }
+
+        .month-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #58a6ff;
+        }
+    </style>
+</head>
+
+<body class="locked">
+    <!-- Login Overlay -->
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-card">
+            <h2>NHIS Library Access</h2>
+            <p>Please enter your credentials.</p>
+            <input type="text" id="loginUsername" placeholder="Username" class="login-input" autocomplete="off" autocorrect="off" autocapitalize="none">
+            <div style="position: relative; width: 100%; margin-bottom: 1rem;">
+                <input type="password" id="loginPassword" placeholder="Password" class="login-input" style="margin-bottom: 0; padding-right: 40px;" autocorrect="off" autocapitalize="none">
+                <span id="togglePassword" style="position: absolute; right: 15px; top: 15px; cursor: pointer; font-size: 1.2rem; user-select: none; opacity: 0.8;" title="Toggle Password Visibility">📕</span>
+            </div>
+            <button id="loginBtn" class="login-btn">Login</button>
+            <div id="loginError" class="login-error"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" data-aos="fade-down" data-aos-duration="1000">
+        <div class="logo-container">
+            <span class="logo-text">📚 NHIS Primary Library</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="noticeboard.html">Noticeboard</a></li>
+            <li><a href="activities.html" style="color: var(--primary);">Monthly Activities</a></li>
+        </ul>
+    </nav>
+
+    <!-- Activities Section -->
+    <section class="section" style="margin-top: 80px; min-height: 100vh;">
+        <div class="section-header" data-aos="fade-up">
+            <h2 style="color: #58a6ff;">📅 Monthly Activities</h2>
+            <p>Select a month to view our special library activities</p>
+        </div>
+
+        <div style="max-width: 800px; margin: 2rem auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; padding: 0 1.5rem;">
+            <!-- June Card -->
+            <a href="june_activity.html" class="month-card" data-aos="zoom-in" data-aos-delay="100">
+                <h3>June</h3>
+                <p style="color: #8b949e;">View activity details and video</p>
+            </a>
+            <!-- Placeholders for other months could go here -->
+            <div class="month-card" data-aos="zoom-in" data-aos-delay="200" style="opacity: 0.5; cursor: not-allowed;" onclick="return false;">
+                <h3>July</h3>
+                <p style="color: #8b949e;">Coming Soon...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 New Horizon International School Library. All rights reserved.</p>
+    </footer>
+
+    <!-- Script -->
+    <script>
+        // --- Login Logic ---
+        const loginOverlay = document.getElementById('loginOverlay');
+        const loginBtn = document.getElementById('loginBtn');
+        const loginUsernameInput = document.getElementById('loginUsername');
+        const loginPasswordInput = document.getElementById('loginPassword');
+        const loginError = document.getElementById('loginError');
+
+        if (sessionStorage.getItem('nhis_authenticated') === 'true') {
+            loginOverlay.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            document.body.classList.remove('locked');
+        } else {
+            document.body.style.overflow = 'hidden';
+            loginUsernameInput.focus();
+        }
+
+        loginBtn.addEventListener('click', function () {
+            const username = loginUsernameInput.value.trim().toLowerCase();
+            const password = loginPasswordInput.value.trim().toLowerCase();
+
+            if (username === 'nhisparent' && password === 'parent123') {
+                sessionStorage.setItem('nhis_authenticated', 'true');
+                loginOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                document.body.classList.remove('locked');
+            } else {
+                loginError.textContent = 'Invalid username or password.';
+            }
+        });
+
+        const togglePassword = document.getElementById('togglePassword');
+        togglePassword.addEventListener('click', function () {
+            const type = loginPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            loginPasswordInput.setAttribute('type', type);
+            this.textContent = type === 'password' ? '📕' : '📖';
+        });
+
+        loginPasswordInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') loginBtn.click();
+        });
+        loginUsernameInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') loginPasswordInput.focus();
+        });
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, offset: 50 });
+    </script>
+</body>
+</html>
